@@ -11,8 +11,10 @@ export const Footer = styled.div`
   justify-content: center;
   justify-content: space-around;
 
+  position: fixed;
+  bottom: 15px;
+
   color: #adadad;
 
   width: 35vw;
-  height: 75vh;
 `;
