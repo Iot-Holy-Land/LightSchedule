@@ -1,16 +1,21 @@
-import { Main } from "./components/main/main";
+import { Main } from "./pages/main/main";
 import { Reset } from "styled-reset";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Modify } from "./pages/modify/modify";
+import { Header } from "./components/header/header";
 
 export const App = () => {
-  const queryClient = new QueryClient();
-
   return (
-    <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
       <div>
         <Reset />
-        <Main />
+
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="/Modify" element={<Modify />}></Route>
+        </Routes>
       </div>
-    </QueryClientProvider>
+    </BrowserRouter>
   );
 };
