@@ -5,7 +5,7 @@ export const currentTime = atom({
   default: "00시00분",
 });
 
-export const inputTime = atom({
+export const inputTime = atom<any>({
   key: "inputTime",
   default: "00시00분",
 });

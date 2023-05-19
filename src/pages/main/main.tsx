@@ -2,8 +2,10 @@ import { Data } from "../../components/Data/Data";
 import { Footer } from "../../components/footer/footer";
 import styled from "styled-components";
 
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { Status } from "../../recoil/Modal";
+import { useEffect } from "react";
+import { currentTime } from "../../recoil/Time";
 
 import { Reservation } from "../../components/Modal/Reservation/reservation";
 
@@ -12,6 +14,22 @@ export const Main = () => {
   const Insert = () => {
     setStatus(true);
   };
+
+  const [timer, setTimer] = useRecoilState(currentTime);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const time = new Date();
+      const hour = time.getHours();
+      const min = time.getMinutes();
+      setTimer(`${hour}시${min}분`);
+      console.log("현재 시간:", `${hour}시${min}분`);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>

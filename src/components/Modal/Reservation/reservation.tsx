@@ -1,29 +1,23 @@
 import * as S from "./reservation.style";
-import { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { Status } from "../../../recoil/Modal";
-import { currentTime, inputTime } from "../../../recoil/Time";
-import { matching } from "../../../recoil/Time";
+import { useInsert } from "../../../utils";
+import { inputTime } from "../../../recoil/Time";
 
 export const Reservation = () => {
   const [status, setStatus] = useRecoilState(Status);
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
+  const [input, setInput] = useRecoilState(inputTime);
+  const { useInsertData } = useInsert();
 
-  const [timer, setTimer] = useRecoilState(inputTime);
-  const [compare, setCompare] = useRecoilState(matching);
-  const current = useRecoilValue(currentTime);
-
+  const date = "5월21일";
   const Plus = () => {
-    setTimer(`${hour}시${min}분`);
-    if (`${hour}시${min}분` === current) {
-      setCompare(true);
-    }
+    setInput(`${hour}시${min}분`);
   };
+  const test = useInsertData(input, date);
 
-  useEffect(() => {
-    console.log("결과 : ", compare);
-  }, [compare]);
   return (
     <S.Reservation>
       <S.Top>
