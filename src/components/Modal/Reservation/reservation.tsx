@@ -1,8 +1,9 @@
 import * as S from "./reservation.style";
 import { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Status } from "../../../recoil/Modal";
-import { inputTime } from "../../../recoil/Time";
+import { currentTime, inputTime } from "../../../recoil/Time";
+import { matching } from "../../../recoil/Time";
 
 export const Reservation = () => {
   const [status, setStatus] = useRecoilState(Status);
@@ -10,11 +11,19 @@ export const Reservation = () => {
   const [min, setMin] = useState("");
 
   const [timer, setTimer] = useRecoilState(inputTime);
+  const [compare, setCompare] = useRecoilState(matching);
+  const current = useRecoilValue(currentTime);
+
+  const Plus = () => {
+    setTimer(`${hour}시${min}분`);
+    if (`${hour}시${min}분` === current) {
+      setCompare(true);
+    }
+  };
 
   useEffect(() => {
-    console.log("니가 입력한 값 : ", timer);
-  }, [timer]);
-
+    console.log("결과 : ", compare);
+  }, [compare]);
   return (
     <S.Reservation>
       <S.Top>
@@ -40,7 +49,7 @@ export const Reservation = () => {
         </div>
       </S.ResTime>
       <S.Plus>
-        <S.Btn onClick={() => setTimer(`${hour}시${min}분`)}>추가</S.Btn>
+        <S.Btn onClick={Plus}>추가</S.Btn>
       </S.Plus>
     </S.Reservation>
   );

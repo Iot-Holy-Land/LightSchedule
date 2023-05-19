@@ -2,8 +2,9 @@ import { Data } from "../../components/Data/Data";
 import { Footer } from "../../components/footer/footer";
 import styled from "styled-components";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Status } from "../../recoil/Modal";
+
 import { Reservation } from "../../components/Modal/Reservation/reservation";
 
 export const Main = () => {

@@ -2,11 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Test } from "../../utils/auth";
 import * as S from "./Data.style";
 import { Clock } from "../Clock/Clock";
-import { useEffect, useState } from "react";
-import { Reservation } from "../Modal/Reservation/reservation";
-
-import { useRecoilValue, useRecoilState } from "recoil";
-import { Status } from "../../recoil/Modal";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import { currentTime } from "../../recoil/Time";
 import { Loding } from "../Loading/loading";
 
@@ -15,14 +12,19 @@ export const Data = () => {
 
   const [timer, setTimer] = useRecoilState(currentTime);
 
-  const time = new Date();
-  const hour = time.getHours();
-  const min = time.getMinutes();
-
   useEffect(() => {
-    setTimer(`${hour}시${min}분`);
-    console.log("현재 시간 : ", timer);
-  }, [timer]);
+    const interval = setInterval(() => {
+      const time = new Date();
+      const hour = time.getHours();
+      const min = time.getMinutes();
+      setTimer(`${hour}시${min}분`);
+      console.log("현재 시간:", `${hour}시${min}분`);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>

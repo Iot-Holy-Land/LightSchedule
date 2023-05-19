@@ -9,3 +9,8 @@ export const inputTime = atom({
   key: "inputTime",
   default: "00시00분",
 });
+
+export const matching = atom({
+  key: "matching",
+  default: false,
+});
