@@ -7,6 +7,10 @@ export interface lightSchedule {
 }
 
 export const Insert = async ({ time, date }: lightSchedule) => {
+  if (time === "" || date === "") {
+    return;
+  }
+
   const query = qs.stringify({
     time: time,
     date: date,

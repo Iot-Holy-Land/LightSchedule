@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { Status } from "../../recoil/Modal";
 import { useEffect } from "react";
-import { currentTime } from "../../recoil/Time";
+import { currentTime, currentDate } from "../../recoil/Time";
 
 import { Reservation } from "../../components/Modal/Reservation/reservation";
+import { dateRangeSchema } from "square/dist/types/models/dateRange";
 
 export const Main = () => {
   const [status, setStatus] = useRecoilState(Status);
@@ -16,10 +17,13 @@ export const Main = () => {
   };
 
   const [timer, setTimer] = useRecoilState(currentTime);
+  const [date, setDate] = useRecoilState(currentDate);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const time = new Date();
+      // const month = time.getMonth
+      setDate(`${time.getMonth() + 1}월${time.getDate()}일`);
       const hour = time.getHours();
       const min = time.getMinutes();
       setTimer(`${hour}시${min}분`);
