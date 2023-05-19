@@ -33,11 +33,6 @@ export const Main = () => {
   );
 };
 
-const Container = styled.div`
-  background-color: lightgray;
-  width: 100vw;
-  height: 80vh;
-`;
 const Modal = styled.div`
   position: fixed;
   display: flex;

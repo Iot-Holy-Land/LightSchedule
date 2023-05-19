@@ -10,15 +10,11 @@ export const Container = styled.div`
 export const Data = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   gap: 30px;
   margin: 20px;
 `;
 export const Card = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-
   width: 20vw;
   height: 20vw;
 
@@ -42,7 +38,7 @@ export const Time = styled.div`
   align-items: center;
   justify-content: center;
 
-  font-size: 18px;
+  font-size: 1.2vw;
   font-weight: 600;
 
   height: 25%;
