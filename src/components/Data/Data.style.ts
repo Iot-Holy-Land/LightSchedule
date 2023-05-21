@@ -14,6 +14,7 @@ export const Data = styled.div`
   gap: 30px;
   margin: 20px;
 `;
+
 export const Card = styled.div`
   width: 20vw;
   height: 20vw;
@@ -37,12 +38,18 @@ export const Time = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: space-around;
+
+  margin-left: 1.5vw;
 
   font-size: 1.2vw;
   font-weight: 600;
 
   height: 25%;
-  width: 85%;
+`;
+
+export const Cencle = styled.img`
+  width: 5vw;
 `;
 
 export const Date = styled.div`

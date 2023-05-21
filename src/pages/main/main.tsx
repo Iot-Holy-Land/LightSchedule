@@ -24,8 +24,8 @@ export const Main = () => {
       const time = new Date();
       setDate(`${time.getMonth() + 1}월${time.getDate()}일`);
       setTimer(`${time.getHours()}시${time.getMinutes()}분`);
-      console.log("현재 시간:", `${time.getHours()}시${time.getMinutes()}분`);
-      console.log("현재 날짜:", `${time.getMonth() + 1}월${time.getDate()}일`);
+      // console.log("현재 시간:", `${time.getHours()}시${time.getMinutes()}분`);
+      // console.log("현재 날짜:", `${time.getMonth() + 1}월${time.getDate()}일`);
     }, 1000);
 
     return () => {

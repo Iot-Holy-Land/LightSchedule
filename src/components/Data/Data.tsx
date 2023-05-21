@@ -1,23 +1,59 @@
 import { useQuery } from "@tanstack/react-query";
-import { View } from "../../utils/auth";
+import { View, deleteType } from "../../utils/auth";
 import * as S from "./Data.style";
 import { Clock } from "../Clock/Clock";
 import { Loading } from "../Loading/loading";
+import { useDelete } from "../../utils";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { Check } from "../../recoil/Modal";
+import { Msg } from "../msg";
 
 export const Data = () => {
-  const { data, isLoading, isError } = useQuery(["View"], View);
+  const { data, isLoading } = useQuery(["View"], View);
+  const { useDeleteData } = useDelete();
+  const [check, setCheck] = useRecoilState(Check);
 
+  const [id, setId] = useState<any>(0);
+
+  const Delete = (clickId: number) => {
+    setCheck(true);
+    if (!check) {
+      setId(clickId);
+      window.location.replace("/");
+    }
+  };
+  useDeleteData(id);
+
+  useEffect(() => {
+    console.log(data?.length);
+  }, [data]);
+
+  if (data?.length === 0) {
+    return (
+      <S.Container>
+        <S.Arrow src="./img/leftArrow.png" />
+        <Msg />
+        <S.Arrow src="./img/rightArrow.png" />
+      </S.Container>
+    );
+  }
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <S.Container>
       <S.Arrow src="./img/leftArrow.png" />
       <S.Data>
-        {data?.map((e: any) => (
+        {data?.map((e: deleteType) => (
           <S.Card>
             <S.Time>
               <div>예약시간 : {e.time}</div>
+              <S.Cencle
+                src="./img/Wastebasket.png"
+                onClick={() => Delete(e.id)}
+              />
             </S.Time>
             <S.Picture>
               <Clock />
