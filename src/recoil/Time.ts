@@ -5,11 +5,6 @@ export const currentTime = atom({
   default: "",
 });
 
-export const inputTime = atom<any>({
-  key: "inputTime",
-  default: "",
-});
-
 export const matching = atom({
   key: "matching",
   default: false,

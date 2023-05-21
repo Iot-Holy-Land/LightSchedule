@@ -1,6 +1,6 @@
 import * as S from "./loading.style";
 
-export const Loding = () => {
+export const Loading = () => {
   return (
     <S.Container>
       <S.Loading>

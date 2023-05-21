@@ -22,12 +22,10 @@ export const Main = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const time = new Date();
-      // const month = time.getMonth
       setDate(`${time.getMonth() + 1}월${time.getDate()}일`);
-      const hour = time.getHours();
-      const min = time.getMinutes();
-      setTimer(`${hour}시${min}분`);
-      console.log("현재 시간:", `${hour}시${min}분`);
+      setTimer(`${time.getHours()}시${time.getMinutes()}분`);
+      console.log("현재 시간:", `${time.getHours()}시${time.getMinutes()}분`);
+      console.log("현재 날짜:", `${time.getMonth() + 1}월${time.getDate()}일`);
     }, 1000);
 
     return () => {

@@ -2,14 +2,14 @@ import * as S from "./reservation.style";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Status } from "../../../recoil/Modal";
+import { currentDate } from "../../../recoil/Time";
 import { useInsert } from "../../../utils";
-import { inputTime, currentDate } from "../../../recoil/Time";
 
 export const Reservation = () => {
   const [status, setStatus] = useRecoilState(Status);
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
-  const [input, setInput] = useRecoilState(inputTime);
+  const [input, setInput] = useState("");
   const { useInsertData } = useInsert();
   const date = useRecoilValue(currentDate);
 
@@ -17,7 +17,6 @@ export const Reservation = () => {
     setInput(`${hour}시${min}분`);
   };
   useInsertData(input, date);
-
   return (
     <S.Reservation>
       <S.Top>
