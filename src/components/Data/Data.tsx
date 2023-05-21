@@ -4,15 +4,17 @@ import * as S from "./Data.style";
 import { Clock } from "../Clock/Clock";
 import { Loading } from "../Loading/loading";
 import { useDelete } from "../../utils";
-import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Check } from "../../recoil/Modal";
 import { Msg } from "../msg";
+import { currentTime } from "../../recoil/Time";
 
 export const Data = () => {
   const { data, isLoading } = useQuery(["View"], View);
   const { useDeleteData } = useDelete();
   const [check, setCheck] = useRecoilState(Check);
+  const time = useRecoilValue(currentTime);
 
   const [id, setId] = useState<any>(0);
 
@@ -25,9 +27,14 @@ export const Data = () => {
   };
   useDeleteData(id);
 
-  useEffect(() => {
-    console.log(data?.length);
-  }, [data]);
+  console.log("현재 시간 : ", time);
+  data?.map((e: any) => {
+    console.log(e.time);
+    if (time === e.time) {
+      console.log("알람!!");
+    }
+  });
+  console.log("-----------");
 
   if (data?.length === 0) {
     return (

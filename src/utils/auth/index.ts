@@ -27,16 +27,3 @@ export const Insert = async ({ time, date }: lightSchedule) => {
 export const Delete = async (id: any) => {
   return (await server.get(`/BE/delete.php?id=${id}`)).data;
 };
-
-// export const Insert = async ({ time, date }: lightSchedule) => {
-//   if (time === "" || date === "") {
-//     return;
-//   }
-//   console.log("보내는 값 : ", time, date);
-//   return (
-//     await server.post("/BE/insert.php", {
-//       time: time,
-//       date: date,
-//     })
-//   ).data;
-// };
