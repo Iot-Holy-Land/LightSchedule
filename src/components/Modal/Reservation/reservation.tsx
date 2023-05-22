@@ -12,14 +12,19 @@ export const Reservation = () => {
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
   const [input, setInput] = useState("");
+  const [amPm, setAmPm] = useState("");
 
   const { useInsertData } = useInsert();
+
+  useEffect(() => {
+    console.log(amPm);
+  }, [amPm]);
 
   const Plus = () => {
     setInput(`${hour}시${min}분`);
   };
 
-  const data = useInsertData(input, date);
+  const data = useInsertData(input, date, amPm);
   const Error = data.data;
 
   if (Error === 1) {
@@ -33,6 +38,13 @@ export const Reservation = () => {
           <S.Title>원하시는 시간을 적어주세요.</S.Title>
           <S.Cencle src="./img/Cencle.png" onClick={() => setStatus(false)} />
         </S.Top>
+
+        <S.Select onChange={e => setAmPm(e.target.value)}>
+          <option value="">선택</option>
+          <option value="오전">오전</option>
+          <option value="오후">오후</option>
+        </S.Select>
+
         <S.ResTime>
           <div>
             <S.Input

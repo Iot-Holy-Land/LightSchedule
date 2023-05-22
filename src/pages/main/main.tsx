@@ -41,9 +41,15 @@ export const Main = () => {
         </Modal>
       ) : (
         <>
-          <PlusLine>
-            <Plus src="./img/Plus.png" onClick={Insert} />
-          </PlusLine>
+          <Container>
+            <PlusLine>
+              <Select>
+                <option value="am">오전</option>
+                <option value="pm">오후</option>
+              </Select>
+              <Plus src="./img/Plus.png" onClick={Insert} />
+            </PlusLine>
+          </Container>
           <Data />
         </>
       )}
@@ -53,6 +59,11 @@ export const Main = () => {
     </>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Modal = styled.div`
   position: fixed;
@@ -64,13 +75,26 @@ const Modal = styled.div`
   height: 60vh;
 `;
 
+const Select = styled.select`
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+  outline: none;
+  width: 8vw;
+  height: 5vh;
+
+  border: none;
+  border-bottom: 2px solid black;
+`;
 const PlusLine = styled.div`
   position: absolute;
   display: flex;
-  justify-content: flex-end;
-  width: 82vw;
+  justify-content: space-between;
+  width: 63vw;
   height: 8vh;
 `;
+
 const Plus = styled.img`
   cursor: pointer;
 

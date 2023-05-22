@@ -66,6 +66,7 @@ export const Data = () => {
               <Clock />
             </S.Picture>
             <S.Date>
+              <div>{e.ampm}</div>
               <div>예약 날짜 : {e.date}</div>
             </S.Date>
           </S.Card>

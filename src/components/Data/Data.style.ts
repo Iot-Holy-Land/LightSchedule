@@ -16,8 +16,8 @@ export const Data = styled.div`
 `;
 
 export const Card = styled.div`
-  width: 20vw;
-  height: 20vw;
+  width: 18vw;
+  height: 18vw;
 
   border-radius: 20px;
   box-shadow: 3px 3px 20px gray;
@@ -49,15 +49,15 @@ export const Time = styled.div`
 `;
 
 export const Cencle = styled.img`
-  width: 5vw;
+  width: 4vw;
 `;
 
 export const Date = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: flex-end;
 
-  width: 90%;
+  width: 100%;
   height: 70%;
 `;
 
@@ -67,8 +67,7 @@ export const Picture = styled.div`
 
   position: absolute;
 
-  width: 20vw;
-  height: 18vh;
+  width: 18vw;
 `;
 
 export const Arrow = styled.img`

@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Insert, Delete, deleteType } from "./auth";
 
 export const useInsert = () => {
-  const useInsertData = (time: string, date: string) => {
-    const InsertData = useQuery(["Insert", time, date], () =>
-      Insert({ time, date })
+  const useInsertData = (time: string, date: string, ampm: string) => {
+    const InsertData = useQuery(["Insert", time, date, ampm], () =>
+      Insert({ time, date, ampm })
     );
     return InsertData;
   };

@@ -17,8 +17,17 @@ export const Top = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  height: 20%;
+  height: 30%;
   width: 96%;
+`;
+
+export const Select = styled.select`
+  outline: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  width: 6vw;
+  height: 4vh;
 `;
 
 export const Cencle = styled.img`
@@ -28,7 +37,7 @@ export const Cencle = styled.img`
 
 export const Title = styled.p`
   margin-left: 25px;
-  font-size: 24px;
+  font-size: 1.5vw;
   font-weight: 600;
 `;
 
@@ -37,14 +46,20 @@ export const ResTime = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  height: 50%;
-  width: 30%;
+  height: 35%;
+  width: 15vw;
 `;
 
 export const Input = styled.input`
   width: 2vw;
-  height: 8vh;
-  font-size: 24px;
+  height: 5vh;
+  font-size: 28px;
+
+  text-align: center;
+
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
 `;
 
 export const Text = styled.a`

@@ -6,7 +6,7 @@ export const Header = styled.div`
   align-items: center;
 
   width: 70vw;
-  height: 20vh;
+  height: 21vh;
 `;
 
 export const Logo = styled.img`
