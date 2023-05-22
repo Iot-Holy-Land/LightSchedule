@@ -1,4 +1,5 @@
-import server from "../server";
+import { server } from "../server";
+
 import qs from "qs";
 
 export interface lightSchedule {

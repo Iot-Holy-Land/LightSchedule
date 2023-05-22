@@ -21,7 +21,7 @@ export const Reservation = () => {
   }, [amPm]);
 
   const Plus = () => {
-    setInput(`${hour}시${min}분`);
+    setInput(`${hour}시${min}분0초`);
   };
 
   const data = useInsertData(input, date, amPm);

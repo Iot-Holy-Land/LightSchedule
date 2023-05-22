@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { currentTime, currentDate } from "../../recoil/Time";
 
 import { Reservation } from "../../components/Modal/Reservation/reservation";
-import { dateRangeSchema } from "square/dist/types/models/dateRange";
 
 export const Main = () => {
   const [status, setStatus] = useRecoilState(Status);
@@ -23,7 +22,9 @@ export const Main = () => {
     const interval = setInterval(() => {
       const time = new Date();
       setDate(`${time.getMonth() + 1}월${time.getDate()}일`);
-      setTimer(`${time.getHours()}시${time.getMinutes()}분`);
+      setTimer(
+        `${time.getHours()}시${time.getMinutes()}분${time.getSeconds()}초`
+      );
       // console.log("현재 시간:", `${time.getHours()}시${time.getMinutes()}분`);
       // console.log("현재 날짜:", `${time.getMonth() + 1}월${time.getDate()}일`);
     }, 1000);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const server = axios.create({
+export const server = axios.create({
   baseURL: "http://localhost",
   timeout: 10000,
 });

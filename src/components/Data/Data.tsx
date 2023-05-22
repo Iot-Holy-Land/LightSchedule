@@ -15,7 +15,7 @@ export const Data = () => {
   const { useDeleteData } = useDelete();
   const [check, setCheck] = useRecoilState(Check);
   const time = useRecoilValue(currentTime);
-
+  const [alarm, setAlarm] = useState(false);
   const [id, setId] = useState<any>(0);
 
   const Delete = (clickId: number) => {
@@ -31,7 +31,8 @@ export const Data = () => {
   data?.map((e: any) => {
     console.log(e.time);
     if (time === e.time) {
-      console.log("알람!!");
+      window.location.replace("http://localhost/send.php");
+      console.log("알람온다");
     }
   });
   console.log("-----------");

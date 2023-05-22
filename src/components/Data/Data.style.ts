@@ -7,6 +7,7 @@ export const Container = styled.div`
 
   height: 70vh;
 `;
+
 export const Data = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -42,7 +43,7 @@ export const Time = styled.div`
 
   margin-left: 1.5vw;
 
-  font-size: 1.2vw;
+  font-size: 1vw;
   font-weight: 600;
 
   height: 25%;
