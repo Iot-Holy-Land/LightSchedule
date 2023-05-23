@@ -5,12 +5,12 @@ export const currentTime = atom({
   default: "",
 });
 
-export const matching = atom({
-  key: "matching",
-  default: false,
-});
-
 export const currentDate = atom({
   key: "currentDate",
+  default: "",
+});
+
+export const inputAmPm = atom({
+  key: "inputAmPm",
   default: "",
 });

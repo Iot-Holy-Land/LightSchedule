@@ -2,33 +2,36 @@ import * as S from "./reservation.style";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Status } from "../../../recoil/Modal";
-import { currentDate } from "../../../recoil/Time";
+import { currentDate, inputAmPm } from "../../../recoil/Time";
 import { useInsert } from "../../../utils";
 
 export const Reservation = () => {
   const [status, setStatus] = useRecoilState(Status);
   const date = useRecoilValue(currentDate);
 
-  const [hour, setHour] = useState("");
-  const [min, setMin] = useState("");
+  const [hour, setHour] = useState(0);
+  const [min, setMin] = useState(0);
   const [input, setInput] = useState("");
-  const [amPm, setAmPm] = useState("");
+  const [amPm, setAmPm] = useRecoilState(inputAmPm);
 
   const { useInsertData } = useInsert();
 
-  useEffect(() => {
-    console.log(amPm);
-  }, [amPm]);
-
   const Plus = () => {
-    setInput(`${hour}시${min}분0초`);
+    if (amPm === "오후") {
+      setInput(`${Number(hour) + 12}시${min}분0초`);
+    } else {
+      setInput(`${hour}시${min}분0초`);
+    }
   };
+  useEffect(() => {
+    console.log("내가 적은 시간 : ", input);
+  }, [input]);
 
   const data = useInsertData(input, date, amPm);
   const Error = data.data;
 
   if (Error === 1) {
-    alert("중복되는 예약이 있습니다");
+    // alert("중복되는 예약이 있습니다");
   }
 
   return (
@@ -47,19 +50,11 @@ export const Reservation = () => {
 
         <S.ResTime>
           <div>
-            <S.Input
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setHour(e.target.value)
-              }
-            />
+            <S.Input onChange={(e: any) => setHour(e.target.value)} />
             <S.Text>시</S.Text>
           </div>
           <div>
-            <S.Input
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setMin(e.target.value)
-              }
-            />
+            <S.Input onChange={(e: any) => setMin(e.target.value)} />
             <S.Text>분</S.Text>
           </div>
         </S.ResTime>

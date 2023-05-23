@@ -8,14 +8,14 @@ import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Check } from "../../recoil/Modal";
 import { Msg } from "../msg";
-import { currentTime } from "../../recoil/Time";
+import { currentTime, inputAmPm } from "../../recoil/Time";
 
 export const Data = () => {
   const { data, isLoading } = useQuery(["View"], View);
   const { useDeleteData } = useDelete();
   const [check, setCheck] = useRecoilState(Check);
   const time = useRecoilValue(currentTime);
-  const [alarm, setAlarm] = useState(false);
+  const amPm = useRecoilValue(inputAmPm);
   const [id, setId] = useState<any>(0);
 
   const Delete = (clickId: number) => {
@@ -28,10 +28,11 @@ export const Data = () => {
   useDeleteData(id);
 
   console.log("현재 시간 : ", time);
+
   data?.map((e: any) => {
     console.log(e.time);
     if (time === e.time) {
-      window.location.replace("http://localhost/send.php");
+      window.location.replace("http://localhost/BE/send.php");
       console.log("알람온다");
     }
   });
@@ -49,7 +50,6 @@ export const Data = () => {
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <S.Container>
       <S.Arrow src="./img/leftArrow.png" />
@@ -57,7 +57,9 @@ export const Data = () => {
         {data?.map((e: deleteType) => (
           <S.Card>
             <S.Time>
-              <div>예약시간 : {e.time}</div>
+              <div>
+                <div>예약시간: {e.time}</div>
+              </div>
               <S.Cencle
                 src="./img/Wastebasket.png"
                 onClick={() => Delete(e.id)}

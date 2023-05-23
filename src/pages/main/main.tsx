@@ -2,10 +2,10 @@ import { Data } from "../../components/Data/Data";
 import { Footer } from "../../components/footer/footer";
 import styled from "styled-components";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Status } from "../../recoil/Modal";
 import { useEffect } from "react";
-import { currentTime, currentDate } from "../../recoil/Time";
+import { currentTime, currentDate, inputAmPm } from "../../recoil/Time";
 
 import { Reservation } from "../../components/Modal/Reservation/reservation";
 
@@ -17,16 +17,17 @@ export const Main = () => {
 
   const [timer, setTimer] = useRecoilState(currentTime);
   const [date, setDate] = useRecoilState(currentDate);
+  const amPm = useRecoilValue(inputAmPm);
 
+  console.log("넘어온 데이터 : ", amPm);
   useEffect(() => {
     const interval = setInterval(() => {
       const time = new Date();
       setDate(`${time.getMonth() + 1}월${time.getDate()}일`);
+
       setTimer(
         `${time.getHours()}시${time.getMinutes()}분${time.getSeconds()}초`
       );
-      // console.log("현재 시간:", `${time.getHours()}시${time.getMinutes()}분`);
-      // console.log("현재 날짜:", `${time.getMonth() + 1}월${time.getDate()}일`);
     }, 1000);
 
     return () => {
