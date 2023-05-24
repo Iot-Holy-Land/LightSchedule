@@ -4,19 +4,34 @@ import * as S from "./Data.style";
 import { Clock } from "../Clock/Clock";
 import { Loading } from "../Loading/loading";
 import { useDelete } from "../../utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Check } from "../../recoil/Modal";
 import { Msg } from "../msg";
-import { currentTime, inputAmPm } from "../../recoil/Time";
+import { currentDate, inputAmPm } from "../../recoil/Time";
 
 export const Data = () => {
   const { data, isLoading } = useQuery(["View"], View);
+  const [time, setTime] = useState("");
+  const [date, setDate] = useRecoilState(currentDate);
+  const [id, setId] = useState<any>(0);
   const { useDeleteData } = useDelete();
   const [check, setCheck] = useRecoilState(Check);
-  const time = useRecoilValue(currentTime);
   const amPm = useRecoilValue(inputAmPm);
-  const [id, setId] = useState<any>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const time = new Date();
+      setDate(`${time.getMonth() + 1}월${time.getDate()}일`);
+      setTime(
+        `${time.getHours()}시${time.getMinutes()}분${time.getSeconds()}초`
+      );
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const Delete = (clickId: number) => {
     setCheck(true);

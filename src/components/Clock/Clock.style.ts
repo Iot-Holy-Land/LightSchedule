@@ -27,3 +27,33 @@ export const Dot = styled.div`
   border-radius: 50%;
   background-color: black;
 `;
+
+export const Test = styled.div`
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const Test2 = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const HourLine = styled.div`
+  width: 2.5vw;
+  height: 0.8vh;
+
+  border-radius: 20px;
+  background-color: black;
+`;
+
+export const MinLine = styled.div`
+  position: fixed;
+  width: 0.4vh;
+  height: 3vw;
+
+  border-radius: 20px;
+  background-color: black;
+`;

@@ -17,15 +17,12 @@ export const Reservation = () => {
   const { useInsertData } = useInsert();
 
   const Plus = () => {
-    if (amPm === "오후") {
-      setInput(`${Number(hour) + 12}시${min}분0초`);
+    if (amPm === "오전") {
+      setInput(`${hour}시${min}분0초`);
     } else {
       setInput(`${hour}시${min}분0초`);
     }
   };
-  useEffect(() => {
-    console.log("내가 적은 시간 : ", input);
-  }, [input]);
 
   const data = useInsertData(input, date, amPm);
   const Error = data.data;
