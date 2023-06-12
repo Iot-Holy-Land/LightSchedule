@@ -9,3 +9,8 @@ export const inputAmPm = atom({
   key: "inputAmPm",
   default: "",
 });
+
+// export const copyinput = atom({
+//   key: "copyinput",
+//   default: "",
+// });

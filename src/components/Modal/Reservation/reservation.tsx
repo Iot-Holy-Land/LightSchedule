@@ -9,22 +9,32 @@ export const Reservation = () => {
   const [status, setStatus] = useRecoilState(Status);
   const date = useRecoilValue(currentDate);
 
-  const [hour, setHour] = useState(0);
-  const [min, setMin] = useState(0);
-  const [input, setInput] = useState("");
+  const [hour, setHour] = useState("");
+  const [min, setMin] = useState("");
+  const [inputToDB, setInputToDB] = useState("");
+  const [copytime, setCopytime] = useState("");
   const [amPm, setAmPm] = useRecoilState(inputAmPm);
 
   const { useInsertData } = useInsert();
 
   const Plus = () => {
-    if (amPm === "오전") {
-      setInput(`${hour}시${min}분0초`);
+    if (hour.length === 0 || min.length === 0) {
+      alert("예약 시간을 입력해주세요");
+    } else if (amPm.length === 0) {
+      alert("오전과 오후를 선택해주세요");
     } else {
-      setInput(`${hour}시${min}분0초`);
+      alert("추가되었습니다.");
+    }
+    if (amPm === "오전") {
+      setCopytime(`${hour}시${min}분`);
+      setInputToDB(`${hour}시${min}분0초`);
+    } else {
+      setCopytime(`${hour}시${min}분`);
+      setInputToDB(`${hour}시${min}분0초`);
     }
   };
+  const data = useInsertData(copytime, inputToDB, date, amPm);
 
-  const data = useInsertData(input, date, amPm);
   const Error = data.data;
 
   if (Error === 1) {

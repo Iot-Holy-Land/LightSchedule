@@ -43,10 +43,10 @@ export const Push = styled.div<{ status: string }>`
   ${({ status }) =>
     status === "켜짐"
       ? css`
-          box-shadow: -20px 2px 10px -2px black;
+          box-shadow: 20px 2px 10px -2px black;
         `
       : css`
-          box-shadow: 20px 2px 10px -2px black;
+          box-shadow: -20px 2px 10px -2px black;
         `}
 `;
 

@@ -49,6 +49,10 @@ export const Time = styled.div`
   height: 25%;
 `;
 
+export const Update = styled.img`
+  width: 2vw;
+`;
+
 export const Cencle = styled.img`
   width: 4vw;
 `;

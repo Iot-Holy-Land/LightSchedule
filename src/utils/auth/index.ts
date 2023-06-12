@@ -3,6 +3,7 @@ import { server } from "../server";
 import qs from "qs";
 
 export interface lightSchedule {
+  copytime: string;
   time: string;
   date: string;
   ampm: string;
@@ -15,11 +16,12 @@ export const View = async () => {
   return (await server.get("/BE/view.php")).data;
 };
 
-export const Insert = async ({ time, date, ampm }: lightSchedule) => {
+export const Insert = async ({ copytime, time, date, ampm }: lightSchedule) => {
   if (time.length === 0 || ampm === "") {
     return;
   }
   const query = qs.stringify({
+    copytime: copytime,
     time: time,
     date: date,
     ampm: ampm,

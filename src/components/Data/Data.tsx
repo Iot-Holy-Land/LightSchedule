@@ -17,7 +17,6 @@ export const Data = () => {
   const [id, setId] = useState<any>(0);
   const { useDeleteData } = useDelete();
   const [check, setCheck] = useRecoilState(Check);
-  const amPm = useRecoilValue(inputAmPm);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,10 +41,14 @@ export const Data = () => {
   };
   useDeleteData(id);
 
-  console.log("현재 시간 : ", time);
+  const Update = (clickId: number) => {};
+
+  // let result = time.slice(0, time.indexOf("분") + 1);
+  // console.log(result);
 
   data?.map((e: any) => {
-    console.log(e.time);
+    console.log("현재시간 : ", time);
+    console.log(e);
     if (time === e.time) {
       window.location.replace("http://localhost/BE/send.php");
       console.log("알람온다");
@@ -73,8 +76,9 @@ export const Data = () => {
           <S.Card>
             <S.Time>
               <div>
-                <div>예약시간: {e.time}</div>
+                <div>예약시간 : {e.copytime}</div>
               </div>
+              <S.Update src="./img/update.png" onClick={() => Update(e.id)} />
               <S.Cencle
                 src="./img/Wastebasket.png"
                 onClick={() => Delete(e.id)}
