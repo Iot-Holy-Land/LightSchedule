@@ -19,7 +19,7 @@
 
 --iot--<br />
 <strong>모듈 :</strong> esp32<br />
-<strong>센서 :</strong> 서보모터, 부저, 조도센서, led<br />
+<strong>센서 :</strong> 서보모터, 부저, 조도센서<br />
 
 <hr />
 
