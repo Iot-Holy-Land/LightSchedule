@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Insert, Delete, deleteType } from "./auth";
+import { Insert, Delete, deleteUpdateType, Update } from "./auth";
 
 export const useInsert = () => {
   const useInsertData = (
@@ -17,9 +17,26 @@ export const useInsert = () => {
 };
 
 export const useDelete = () => {
-  const useDeleteData = (id: deleteType) => {
+  const useDeleteData = (id: deleteUpdateType) => {
     const DeleteData = useQuery(["Delete", id], () => Delete(id));
     return DeleteData;
   };
   return { useDeleteData };
+};
+
+export const useUpdate = () => {
+  const useUpdateData = (
+    id: string,
+    copytime: string,
+    time: string,
+    date: string,
+    ampm: string
+  ) => {
+    const UpdateData = useQuery(
+      ["Update", id, copytime, time, date, ampm],
+      () => Update({ id, copytime, time, date, ampm })
+    );
+    return UpdateData;
+  };
+  return { useUpdateData };
 };

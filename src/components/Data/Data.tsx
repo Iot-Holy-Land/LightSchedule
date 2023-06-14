@@ -1,19 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { View, deleteType } from "../../utils/auth";
+import { View, deleteUpdateType } from "../../utils/auth";
 import * as S from "./Data.style";
 import { Clock } from "../Clock/Clock";
 import { Loading } from "../Loading/loading";
-import { useDelete } from "../../utils";
+import { useDelete, useUpdate } from "../../utils";
 import { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { Check } from "../../recoil/Modal";
+import { useRecoilState } from "recoil";
+import { Check, Id, Status } from "../../recoil/Modal";
 import { Msg } from "../msg";
-import { currentDate, inputAmPm } from "../../recoil/Time";
+import { currentDate } from "../../recoil/Time";
+import { UpdateModal } from "../Modal/Update/update";
 
 export const Data = () => {
   const { data, isLoading } = useQuery(["View"], View);
   const [time, setTime] = useState("");
   const [date, setDate] = useRecoilState(currentDate);
+  const [status, setStatus] = useRecoilState(Status);
+  const [recive, setRecive] = useRecoilState(Id);
   const [id, setId] = useState<any>(0);
   const { useDeleteData } = useDelete();
   const [check, setCheck] = useRecoilState(Check);
@@ -41,20 +44,20 @@ export const Data = () => {
   };
   useDeleteData(id);
 
-  const Update = (clickId: number) => {};
+  const Update = (clickId: number) => {
+    setStatus("updateModal");
+    setRecive(clickId);
+  };
 
   // let result = time.slice(0, time.indexOf("분") + 1);
   // console.log(result);
 
   data?.map((e: any) => {
-    console.log("현재시간 : ", time);
-    console.log(e);
     if (time === e.time) {
       window.location.replace("http://localhost/BE/send.php");
       console.log("알람온다");
     }
   });
-  console.log("-----------");
 
   if (data?.length === 0) {
     return (
@@ -69,32 +72,43 @@ export const Data = () => {
     return <Loading />;
   }
   return (
-    <S.Container>
-      <S.Arrow src="./img/leftArrow.png" />
-      <S.Data>
-        {data?.map((e: deleteType) => (
-          <S.Card>
-            <S.Time>
-              <div>
-                <div>예약시간 : {e.copytime}</div>
-              </div>
-              <S.Update src="./img/update.png" onClick={() => Update(e.id)} />
-              <S.Cencle
-                src="./img/Wastebasket.png"
-                onClick={() => Delete(e.id)}
-              />
-            </S.Time>
-            <S.Picture>
-              <Clock />
-            </S.Picture>
-            <S.Date>
-              <div>{e.ampm}</div>
-              <div>예약 날짜 : {e.date}</div>
-            </S.Date>
-          </S.Card>
-        ))}
-      </S.Data>
-      <S.Arrow src="./img/rightArrow.png" />
-    </S.Container>
+    <>
+      {status === "updateModal" ? (
+        <S.Modal>
+          <UpdateModal />
+        </S.Modal>
+      ) : (
+        <S.Container>
+          <S.Arrow src="./img/leftArrow.png" />
+          <S.Data>
+            {data?.map((e: deleteUpdateType) => (
+              <S.Card>
+                <S.Time>
+                  <div>
+                    <div>예약시간 : {e.copytime}</div>
+                  </div>
+                  <S.Update
+                    src="./img/update.png"
+                    onClick={() => Update(e.id)}
+                  />
+                  <S.Cencle
+                    src="./img/Wastebasket.png"
+                    onClick={() => Delete(e.id)}
+                  />
+                </S.Time>
+                <S.Picture>
+                  <Clock />
+                </S.Picture>
+                <S.Date>
+                  <div>{e.ampm}</div>
+                  <div>예약 날짜 : {e.date}</div>
+                </S.Date>
+              </S.Card>
+            ))}
+          </S.Data>
+          <S.Arrow src="./img/rightArrow.png" />
+        </S.Container>
+      )}
+    </>
   );
 };

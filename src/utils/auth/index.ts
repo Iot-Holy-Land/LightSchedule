@@ -8,7 +8,7 @@ export interface lightSchedule {
   date: string;
   ampm: string;
 }
-export interface deleteType extends lightSchedule {
+export interface deleteUpdateType extends lightSchedule {
   id: number;
 }
 
@@ -31,4 +31,15 @@ export const Insert = async ({ copytime, time, date, ampm }: lightSchedule) => {
 
 export const Delete = async (id: any) => {
   return (await server.get(`/BE/delete.php?id=${id}`)).data;
+};
+
+export const Update = async ({ id, copytime, time, date, ampm }: any) => {
+  const query = qs.stringify({
+    id: id,
+    copytime: copytime,
+    time: time,
+    date: date,
+    ampm: ampm,
+  });
+  return (await server.get(`/BE/update.php?${query}`)).data;
 };

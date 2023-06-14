@@ -10,12 +10,12 @@ import { Reservation } from "../../components/Modal/Reservation/reservation";
 export const Main = () => {
   const [status, setStatus] = useRecoilState(Status);
   const Insert = () => {
-    setStatus(true);
+    setStatus("insertModal");
   };
 
   return (
     <>
-      {status ? (
+      {status === "insertModal" ? (
         <Modal>
           <Reservation />
         </Modal>
@@ -23,10 +23,6 @@ export const Main = () => {
         <>
           <Container>
             <PlusLine>
-              <Select>
-                <option value="am">오전</option>
-                <option value="pm">오후</option>
-              </Select>
               <Plus src="./img/Plus.png" onClick={Insert} />
             </PlusLine>
           </Container>
@@ -52,22 +48,10 @@ const Modal = styled.div`
   height: 60vh;
 `;
 
-const Select = styled.select`
-  font-size: 18px;
-  font-weight: 600;
-
-  cursor: pointer;
-  outline: none;
-  width: 8vw;
-  height: 5vh;
-
-  border: none;
-  border-bottom: 2px solid black;
-`;
 const PlusLine = styled.div`
   position: absolute;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 63vw;
   height: 8vh;
 `;

@@ -79,3 +79,13 @@ export const Arrow = styled.img`
   width: 5rem;
   cursor: pointer;
 `;
+
+export const Modal = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 60vh;
+`;

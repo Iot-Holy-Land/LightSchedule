@@ -1,11 +1,11 @@
-import * as S from "./reservation.style";
-import { useEffect, useState } from "react";
+import * as S from "./update.style";
+import { Id, Status } from "../../../recoil/Modal";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Status } from "../../../recoil/Modal";
+import { useUpdate } from "../../../utils";
 import { currentDate, inputAmPm } from "../../../recoil/Time";
-import { useInsert } from "../../../utils";
+import { useState, useEffect } from "react";
 
-export const Reservation = () => {
+export const UpdateModal = () => {
   const [status, setStatus] = useRecoilState(Status);
   const date = useRecoilValue(currentDate);
 
@@ -14,16 +14,14 @@ export const Reservation = () => {
   const [inputToDB, setInputToDB] = useState("");
   const [copytime, setCopytime] = useState("");
   const [amPm, setAmPm] = useRecoilState(inputAmPm);
-
-  const { useInsertData } = useInsert();
+  const { useUpdateData } = useUpdate();
+  const id = useRecoilValue(Id);
 
   const Plus = () => {
     if (hour.length === 0 || min.length === 0) {
-      alert("예약 시간을 입력해주세요");
-    } else if (amPm.length === 0) {
-      alert("오전과 오후를 선택해주세요");
+      alert("변경할 시간을 입력해주세요");
     } else {
-      alert("추가되었습니다.");
+      alert("변경되었습니다.");
     }
     if (amPm === "오전") {
       setCopytime(`${hour}시${min}분`);
@@ -33,19 +31,16 @@ export const Reservation = () => {
       setInputToDB(`${hour}시${min}분0초`);
     }
   };
-  const data = useInsertData(copytime, inputToDB, date, amPm);
 
-  const Error = data.data;
-
-  if (Error === 1) {
-    // alert("중복되는 예약이 있습니다");
-  }
-
+  const data = useUpdateData(id, copytime, inputToDB, date, amPm);
+  useEffect(() => {
+    console.log(data.data);
+  }, [data]);
   return (
     <>
-      <S.Reservation>
+      <S.Update>
         <S.Top>
-          <S.Title>원하시는 시간을 적어주세요.</S.Title>
+          <S.Title>수정하고싶은 시간을 적어주세요.</S.Title>
           <S.Cencle src="./img/Cencle.png" onClick={() => setStatus("")} />
         </S.Top>
 
@@ -55,7 +50,7 @@ export const Reservation = () => {
           <option value="오후">오후</option>
         </S.Select>
 
-        <S.ResTime>
+        <S.UpdateTime>
           <div>
             <S.Input onChange={(e: any) => setHour(e.target.value)} />
             <S.Text>시</S.Text>
@@ -64,11 +59,11 @@ export const Reservation = () => {
             <S.Input onChange={(e: any) => setMin(e.target.value)} />
             <S.Text>분</S.Text>
           </div>
-        </S.ResTime>
+        </S.UpdateTime>
         <S.Plus>
-          <S.Btn onClick={Plus}>추가</S.Btn>
+          <S.Btn onClick={Plus}>수정하기</S.Btn>
         </S.Plus>
-      </S.Reservation>
+      </S.Update>
     </>
   );
 };
