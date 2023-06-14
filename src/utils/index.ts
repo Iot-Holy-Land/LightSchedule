@@ -29,12 +29,10 @@ export const useUpdate = () => {
     id: string,
     copytime: string,
     time: string,
-    date: string,
     ampm: string
   ) => {
-    const UpdateData = useQuery(
-      ["Update", id, copytime, time, date, ampm],
-      () => Update({ id, copytime, time, date, ampm })
+    const UpdateData = useQuery(["Update", id, copytime, time, ampm], () =>
+      Update({ id, copytime, time, ampm })
     );
     return UpdateData;
   };

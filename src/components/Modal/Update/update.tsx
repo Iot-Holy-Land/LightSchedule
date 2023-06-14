@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 export const UpdateModal = () => {
   const [status, setStatus] = useRecoilState(Status);
-  const date = useRecoilValue(currentDate);
 
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
@@ -30,12 +29,11 @@ export const UpdateModal = () => {
       setCopytime(`${hour}시${min}분`);
       setInputToDB(`${hour}시${min}분0초`);
     }
+    window.location.replace("/");
   };
 
-  const data = useUpdateData(id, copytime, inputToDB, date, amPm);
-  useEffect(() => {
-    console.log(data.data);
-  }, [data]);
+  useUpdateData(id, copytime, inputToDB, amPm);
+
   return (
     <>
       <S.Update>

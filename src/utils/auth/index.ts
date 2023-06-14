@@ -33,12 +33,11 @@ export const Delete = async (id: any) => {
   return (await server.get(`/BE/delete.php?id=${id}`)).data;
 };
 
-export const Update = async ({ id, copytime, time, date, ampm }: any) => {
+export const Update = async ({ id, copytime, time, ampm }: any) => {
   const query = qs.stringify({
     id: id,
     copytime: copytime,
     time: time,
-    date: date,
     ampm: ampm,
   });
   return (await server.get(`/BE/update.php?${query}`)).data;
