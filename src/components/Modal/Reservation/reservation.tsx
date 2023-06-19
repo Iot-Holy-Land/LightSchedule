@@ -57,11 +57,19 @@ export const Reservation = () => {
 
         <S.ResTime>
           <div>
-            <S.Input onChange={(e: any) => setHour(e.target.value)} />
+            <S.Input
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setHour(e.target.value)
+              }
+            />
             <S.Text>시</S.Text>
           </div>
           <div>
-            <S.Input onChange={(e: any) => setMin(e.target.value)} />
+            <S.Input
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setMin(e.target.value)
+              }
+            />
             <S.Text>분</S.Text>
           </div>
         </S.ResTime>

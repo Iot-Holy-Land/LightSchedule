@@ -2,8 +2,8 @@ import * as S from "./update.style";
 import { Id, Status } from "../../../recoil/Modal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useUpdate } from "../../../utils";
-import { currentDate, inputAmPm } from "../../../recoil/Time";
-import { useState, useEffect } from "react";
+import { inputAmPm } from "../../../recoil/Time";
+import { useState } from "react";
 
 export const UpdateModal = () => {
   const [status, setStatus] = useRecoilState(Status);
@@ -50,11 +50,19 @@ export const UpdateModal = () => {
 
         <S.UpdateTime>
           <div>
-            <S.Input onChange={(e: any) => setHour(e.target.value)} />
+            <S.Input
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setHour(e.target.value)
+              }
+            />
             <S.Text>시</S.Text>
           </div>
           <div>
-            <S.Input onChange={(e: any) => setMin(e.target.value)} />
+            <S.Input
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setMin(e.target.value)
+              }
+            />
             <S.Text>분</S.Text>
           </div>
         </S.UpdateTime>
